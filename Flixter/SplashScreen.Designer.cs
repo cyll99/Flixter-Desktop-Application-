@@ -43,6 +43,7 @@ namespace Flixter
             this.panelTitleBar.Name = "panelTitleBar";
             this.panelTitleBar.Size = new System.Drawing.Size(800, 450);
             this.panelTitleBar.TabIndex = 0;
+            this.panelTitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTitleBar_Paint);
             // 
             // label1
             // 
@@ -55,7 +56,7 @@ namespace Flixter
             this.label1.TabIndex = 0;
             this.label1.Text = "FLixter";
             // 
-            // Form1
+            // SplashScreen
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -65,7 +66,7 @@ namespace Flixter
             this.ControlBox = false;
             this.Controls.Add(this.panelTitleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "SplashScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Form1";
