@@ -54,11 +54,19 @@ namespace Flixter
 
         public void afficher(int index)
         {
-            if (index < 0 || index == listFilm.Count)
-            {
-                MessageBox.Show("Out of range", "Flixter");
-                return;
-            }
+            if (index > 0)
+                btn_precedent.Enabled = true;
+            else
+                btn_precedent.Enabled = false;
+
+
+            if (index == listFilm.Count - 1)
+                btn_suivant.Enabled = false;
+            else
+                btn_suivant.Enabled = true;
+
+
+          
             Film film = listFilm.ElementAt(index);
             lbl_title.Text = film.title;
             label1.Text = film.overview;

@@ -33,7 +33,7 @@ namespace Flixter
             this.lbl_title = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_precedent = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_suivant = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +71,7 @@ namespace Flixter
             // btn_precedent
             // 
             this.btn_precedent.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_precedent.Enabled = false;
             this.btn_precedent.Location = new System.Drawing.Point(542, 343);
             this.btn_precedent.Name = "btn_precedent";
             this.btn_precedent.Size = new System.Drawing.Size(75, 23);
@@ -79,16 +80,16 @@ namespace Flixter
             this.btn_precedent.UseVisualStyleBackColor = false;
             this.btn_precedent.Click += new System.EventHandler(this.btn_precedent_Click);
             // 
-            // button1
+            // btn_suivant
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.button1.Location = new System.Drawing.Point(781, 343);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Suivant";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_suivant.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_suivant.Location = new System.Drawing.Point(781, 343);
+            this.btn_suivant.Name = "btn_suivant";
+            this.btn_suivant.Size = new System.Drawing.Size(75, 23);
+            this.btn_suivant.TabIndex = 5;
+            this.btn_suivant.Text = "Suivant";
+            this.btn_suivant.UseVisualStyleBackColor = false;
+            this.btn_suivant.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmFilms
             // 
@@ -96,7 +97,7 @@ namespace Flixter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(900, 461);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_suivant);
             this.Controls.Add(this.btn_precedent);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_title);
@@ -117,6 +118,6 @@ namespace Flixter
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_precedent;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_suivant;
     }
 }
