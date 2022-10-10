@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,8 +18,14 @@ namespace Flixter
         public static List<Film> listFilm = Utilities.getMovieDbList();
         public frmFilms()
         {
+            Thread thread = new Thread(new ThreadStart(LoadSplashScreen));
+            thread.Start();
+            Thread.Sleep(5000);
             InitializeComponent();
+            thread.Abort();
         }
+
+        public void LoadSplashScreen() => Application.Run(new SplashScreen());
 
         private void frmFilms_Load(object sender, EventArgs e)
         {

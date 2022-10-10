@@ -29,8 +29,11 @@ namespace Flixter
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelTitleBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,6 +41,7 @@ namespace Flixter
             // 
             this.panelTitleBar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelTitleBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelTitleBar.Controls.Add(this.progressBar1);
             this.panelTitleBar.Controls.Add(this.label1);
             this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
             this.panelTitleBar.Name = "panelTitleBar";
@@ -48,13 +52,27 @@ namespace Flixter
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 70F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Green;
-            this.label1.Location = new System.Drawing.Point(299, 174);
+            this.label1.Location = new System.Drawing.Point(202, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 49);
+            this.label1.Size = new System.Drawing.Size(372, 154);
             this.label1.TabIndex = 0;
             this.label1.Text = "FLixter";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Lime;
+            this.progressBar1.Location = new System.Drawing.Point(0, 424);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(800, 23);
+            this.progressBar1.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 32;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // SplashScreen
             // 
@@ -80,6 +98,8 @@ namespace Flixter
 
 		private System.Windows.Forms.Panel panelTitleBar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
