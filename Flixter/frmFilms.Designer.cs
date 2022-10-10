@@ -42,7 +42,7 @@ namespace Flixter
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Location = new System.Drawing.Point(542, 114);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(314, 301);
+            this.pictureBox1.Size = new System.Drawing.Size(314, 193);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -59,6 +59,7 @@ namespace Flixter
             // 
             // label1
             // 
+            this.label1.AllowDrop = true;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(23, 174);
             this.label1.MinimumSize = new System.Drawing.Size(400, 250);
@@ -70,29 +71,31 @@ namespace Flixter
             // btn_precedent
             // 
             this.btn_precedent.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.btn_precedent.Location = new System.Drawing.Point(26, 472);
+            this.btn_precedent.Location = new System.Drawing.Point(542, 343);
             this.btn_precedent.Name = "btn_precedent";
             this.btn_precedent.Size = new System.Drawing.Size(75, 23);
             this.btn_precedent.TabIndex = 4;
             this.btn_precedent.Text = "Precedent";
             this.btn_precedent.UseVisualStyleBackColor = false;
+            this.btn_precedent.Click += new System.EventHandler(this.btn_precedent_Click);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.button1.Location = new System.Drawing.Point(542, 472);
+            this.button1.Location = new System.Drawing.Point(781, 343);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
             this.button1.Text = "Suivant";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmFilms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(900, 600);
+            this.ClientSize = new System.Drawing.Size(900, 461);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_precedent);
             this.Controls.Add(this.label1);

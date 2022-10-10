@@ -13,6 +13,8 @@ namespace Flixter
 {
     public partial class frmFilms : Form
     {
+        int index = 0;
+        public static List<Film> listFilm = Utilities.getMovieDbList();
         public frmFilms()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace Flixter
 
         private void frmFilms_Load(object sender, EventArgs e)
         {
-
+            afficher(index);
         }
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -36,6 +38,32 @@ namespace Flixter
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_precedent_Click(object sender, EventArgs e)
+        {
+            index -= 1;
+            afficher(index);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            index += 1;
+            afficher(index);
+        }
+
+        public void afficher(int index)
+        {
+            if (index < 0 || index == listFilm.Count)
+            {
+                MessageBox.Show("Out of range", "Flixter");
+                return;
+            }
+            Film film = listFilm.ElementAt(index);
+            lbl_title.Text = film.title;
+            label1.Text = film.overview;
+            label1.MaximumSize = new Size(50, 0);
+            pictureBox1.LoadAsync("https://image.tmdb.org/t/p/w342" + film.backdrop_path);
         }
     }
   
