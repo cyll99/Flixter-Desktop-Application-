@@ -13,6 +13,7 @@ namespace Flixter
 {
 	public partial class SplashScreen : Form
 	{
+		frmFilms form = new frmFilms();
 		public SplashScreen()
 		{
 			InitializeComponent();
@@ -32,7 +33,18 @@ namespace Flixter
         {
 			progressBar1.Increment(1);
 			if (progressBar1.Value == 100)
+            {
 				timer1.Stop();
+				
+				form.Show();
+				this.Hide();
+			}
+				
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

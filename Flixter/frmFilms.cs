@@ -18,19 +18,31 @@ namespace Flixter
         public static List<Film> listFilm = Utilities.getMovieDbList();
         public frmFilms()
         {
-            Thread thread = new Thread(new ThreadStart(LoadSplashScreen));
+            /*Thread thread = new Thread(new ThreadStart(LoadSplashScreen));
             thread.Start();
-            Thread.Sleep(5000);
+            Thread.Sleep(5000);*/
             InitializeComponent();
-            thread.Abort();
+            //thread.Abort();
         }
 
-        public void LoadSplashScreen() => Application.Run(new SplashScreen());
+        public void LoadSplashScreen()
+        {
+            try
+            {
+                Application.Run(new SplashScreen());
+
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
         private void frmFilms_Load(object sender, EventArgs e)
         {
             afficher(index);
         }
+
+
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
