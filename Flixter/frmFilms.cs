@@ -92,6 +92,11 @@ namespace Flixter
             label1.MaximumSize = new Size(50, 0);
             pictureBox1.LoadAsync("https://image.tmdb.org/t/p/w342" + film.backdrop_path);
         }
+
+        private void ClosedFomr(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
   
 }

@@ -105,6 +105,7 @@ namespace Flixter
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmFilms";
             this.Text = "Flixter";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosedFomr);
             this.Load += new System.EventHandler(this.frmFilms_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_title_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
