@@ -49,7 +49,7 @@ namespace Flixter
             // lbl_title
             // 
             this.lbl_title.AutoSize = true;
-            this.lbl_title.Location = new System.Drawing.Point(23, 114);
+            this.lbl_title.Location = new System.Drawing.Point(12, 114);
             this.lbl_title.MinimumSize = new System.Drawing.Size(400, 30);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(400, 30);

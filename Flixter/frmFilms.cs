@@ -18,24 +18,11 @@ namespace Flixter
         public static List<Film> listFilm = Utilities.getMovieDbList();
         public frmFilms()
         {
-            /*Thread thread = new Thread(new ThreadStart(LoadSplashScreen));
-            thread.Start();
-            Thread.Sleep(5000);*/
+         
             InitializeComponent();
-            //thread.Abort();
         }
 
-        public void LoadSplashScreen()
-        {
-            try
-            {
-                Application.Run(new SplashScreen());
-
-            }catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
+    
 
         private void frmFilms_Load(object sender, EventArgs e)
         {
@@ -87,6 +74,8 @@ namespace Flixter
 
           
             Film film = listFilm.ElementAt(index);
+            SqliteDataAccess.SaveFilm(film);
+
             lbl_title.Text = film.title;
             label1.Text = film.overview;
             label1.MaximumSize = new Size(50, 0);
