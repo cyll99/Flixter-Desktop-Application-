@@ -25,25 +25,34 @@ namespace Flixter
 
         private void frmFilmDetail_Load(object sender, EventArgs e)
         {
-            currentFilm = ((frmFilms)mainForm).currentFilm;
+            currentFilm = ((frmFilms)mainForm).currentFilm;// get current film from frmFilm
 
             string html = "<html><head>";
             html += "<meta content='IE=Edge' http-equiv='X-UA-Compatible'/>";
             html += "<iframe id='video' src= 'https://www.youtube.com/embed/{0}' width='600' height='300' frameborder='0' allowfullscreen></iframe>";
             html += "</body></html>";
             this.webBrowser1.DocumentText = string.Format(html, getYoutubeKey());
+
+            //set the labels
+            lblDate.Text = currentFilm.release_date;
+            lblLanguage.Text = currentFilm.original_language;
+            lblTitle.Text = currentFilm.title;
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
-
+      
         private void button1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.OK;// close this form
         }
 
+        /// <summary>
+        /// return film's key to watch on youtube
+        /// </summary>
+        /// <returns></returns>
         private String getYoutubeKey()
         {
 

@@ -33,7 +33,9 @@ namespace Flixter
 
         }
 
-
+        /// <summary>
+        /// change the color of the panel to indicate wether there's connection or not
+        /// </summary>
         public void changeColor()
         {
             if (Utilities.IsConnectedToInternet())
@@ -56,10 +58,7 @@ namespace Flixter
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void btn_precedent_Click(object sender, EventArgs e)
         {
@@ -76,13 +75,16 @@ namespace Flixter
             changeColor();
 
         }
-
+        /// <summary>
+        /// display film from website or database
+        /// </summary>
+        /// <param name="index"></param>
         public void afficher(int index)
         {
           
 
             if (Utilities.IsConnectedToInternet())
-            {
+            {// films from api
                 listFilm = Utilities.getMovieDbList();
                 Film film = listFilm.ElementAt(index);
                 currentFilm = film;
@@ -95,7 +97,7 @@ namespace Flixter
                 pictureBox1.LoadAsync("https://image.tmdb.org/t/p/w342" + film.backdrop_path);
             }
             else
-            {
+            {// films from database
                 listFilm = SqliteDataAccess.LoadFilms();
                 Film film = listFilm.ElementAt(index);
                 currentFilm = film;
@@ -120,9 +122,13 @@ namespace Flixter
 
         private void ClosedFomr(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();//close application
         }
-
+        /// <summary>
+        /// send user to detail page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_detail_Click(object sender, EventArgs e)
         {
             frmFilmDetail detail = new frmFilmDetail();
