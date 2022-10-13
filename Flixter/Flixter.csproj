@@ -83,7 +83,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.cs" />
     <Compile Include="Film.cs" />
     <Compile Include="frmFilmDetail.cs">
       <SubType>Form</SubType>

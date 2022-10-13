@@ -20,6 +20,7 @@ namespace Flixter
         {
          
             InitializeComponent();
+            changeColor();
         }
 
     
@@ -27,8 +28,19 @@ namespace Flixter
         private void frmFilms_Load(object sender, EventArgs e)
         {
             afficher(index);
+            changeColor();
+
         }
 
+
+        public void changeColor()
+        {
+            if (Utilities.IsConnectedToInternet())
+                panelConnection.BackColor = Color.Blue;
+            else
+                panelConnection.BackColor = Color.Red;
+
+        }
 
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -39,6 +51,8 @@ namespace Flixter
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+            changeColor();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -50,12 +64,16 @@ namespace Flixter
         {
             index -= 1;
             afficher(index);
+            changeColor();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             index += 1;
             afficher(index);
+            changeColor();
+
         }
 
         public void afficher(int index)
