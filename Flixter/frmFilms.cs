@@ -16,7 +16,7 @@ namespace Flixter
     {
         int index = 0;
         public static List<Film> listFilm;
-        Film currentFilm;
+        public Film currentFilm;
         public frmFilms()
         {
          
@@ -81,16 +81,12 @@ namespace Flixter
         {
           
 
-
-
-         
-
-
             if (Utilities.IsConnectedToInternet())
             {
                 listFilm = Utilities.getMovieDbList();
                 Film film = listFilm.ElementAt(index);
                 currentFilm = film;
+                Console.WriteLine(currentFilm.video.ToString());
                 SqliteDataAccess.SaveFilm(film);
 
                 lbl_title.Text = film.title;
@@ -130,6 +126,7 @@ namespace Flixter
         private void btn_detail_Click(object sender, EventArgs e)
         {
             frmFilmDetail detail = new frmFilmDetail();
+            detail.mainForm = this;
             this.Hide();
             detail.ShowDialog();
             this.Show();
