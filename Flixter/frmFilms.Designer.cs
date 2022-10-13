@@ -96,9 +96,9 @@ namespace Flixter
             // panelConnection
             // 
             this.panelConnection.BackColor = System.Drawing.Color.Red;
-            this.panelConnection.Location = new System.Drawing.Point(867, 12);
+            this.panelConnection.Location = new System.Drawing.Point(859, 12);
             this.panelConnection.Name = "panelConnection";
-            this.panelConnection.Size = new System.Drawing.Size(11, 13);
+            this.panelConnection.Size = new System.Drawing.Size(20, 20);
             this.panelConnection.TabIndex = 6;
             // 
             // btn_detail

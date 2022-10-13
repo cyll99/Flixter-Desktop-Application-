@@ -21,6 +21,8 @@ namespace Flixter
         {
          
             InitializeComponent();
+            panelConnection.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panelConnection.Width,
+            panelConnection.Height, 50, 50));
             changeColor();
         }
 
@@ -45,6 +47,17 @@ namespace Flixter
 
         }
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse
+        );
+        
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
