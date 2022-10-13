@@ -46,15 +46,22 @@ namespace Flixter
                 //byte[] imageData = ReadFile(backdrop);
                 // Image photo = new Bitmap(@"\Photos\Image20120601_1.jpeg");
                 byte[] pic = ImageToByte(backdrop, System.Drawing.Imaging.ImageFormat.Jpeg);
-                string sql = "insert into offline (title, overview, image, release_date, vote_count,id,original_language) values(@title, @overview, @pic,  @release_date, @vote_count, @id, @original_language)";
-                string s = @"
+                //string sql = "insert into offline (title, overview, image, release_date, vote_count,id,original_language) values(@title, @overview, @pic,  @release_date, @vote_count, @id, @original_language)";
+                string sql = @"
                         insert into offline (title, overview, image, release_date, vote_count,id,original_language)
-                        Select @title , @overview, @pic, @release_date, @release_date,@vote_count, @id, @original_language
+                        Select @title , @overview, @pic, @release_date,@vote_count, @id, @original_language
                         Where not exists (
                             select * 
                             from offline 
                             where 
-                                id = @id)
+                                id = @id
+                            and overview = @overview
+                            and image = @pic
+                            and release_date = @release_date
+                            and original_language = @original_language
+                            and title = @title
+                            and vote_count = @vote_count
+)
                         ";
                 using ( var cmd = new SQLiteCommand(sql, cnn))
                 {
