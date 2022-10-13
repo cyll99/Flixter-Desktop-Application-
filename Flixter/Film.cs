@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Text.Json;
@@ -34,6 +35,7 @@ namespace Flixter
         public bool video { get; set; }
         public float vote_average { get; set; }
         public int vote_count { get; set; }
+        public Image image { get; set; }
     }
 
     public class Utilities

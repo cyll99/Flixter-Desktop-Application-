@@ -15,22 +15,48 @@ namespace Flixter
 {
     class SqliteDataAccess
     {
+
         public static void CreateIfNotExists()
         {
             using (IDbConnection cnn = new SQLiteConnection("Data Source=./films.db;Version=3"))
             {
 
-                var query = "CREATE TABLE IF NOT EXISTS offline (adult CHAR(50), title CHAR(50), image BLOB, release_date TEXT, original_language TEXT, popularity NUMERIC, vote_count INTEGER, overview	TEXT)";
+                var query = "CREATE TABLE IF NOT EXISTS offline ( title CHAR(50), image BLOB, release_date TEXT, original_language TEXT,  vote_count INTEGER, overview	TEXT)";
 
                 cnn.Execute(query, new DynamicParameters());
             }
         }
         public static List<Film> LoadFilms()
         {
-            using (IDbConnection cnn = new SQLiteConnection("Data Source=./films.db;Version=3"))
+            List<Film> films = new List<Film>();
+            using (SQLiteConnection cnn = new SQLiteConnection("Data Source=./films.db;Version=3"))
             {
-                var output = cnn.Query<Film>("select * from offline", new DynamicParameters());
-                return output.ToList();
+                var query = "select * from offline";
+                cnn.Open();
+
+                SQLiteCommand sQLiteCommand = new SQLiteCommand(query, cnn);
+                SQLiteDataReader sQLiteDataReader = sQLiteCommand.ExecuteReader();
+                if (sQLiteDataReader.HasRows)
+                {
+                    
+                    while (sQLiteDataReader.Read())
+                    {
+                        Film film = new Film();
+                        film.title = (string)sQLiteDataReader["title"];
+                        film.release_date = (string)sQLiteDataReader["release_date"];
+                        film.original_language = (string)sQLiteDataReader["original_language"];
+                        film.vote_count = Convert.ToInt32(sQLiteDataReader["vote_count"]);
+                        film.overview = (string)sQLiteDataReader["overview"];
+                        byte[] image_byte = (byte[])sQLiteDataReader["image"];
+
+                        Image newImage = byteArrayToImage(image_byte);
+
+                        film.image = newImage;
+                        films.Add(film);
+                    }
+                }
+
+                return films;
             }
 
         }
@@ -43,10 +69,8 @@ namespace Flixter
 
               
                 var backdrop = "https://image.tmdb.org/t/p/w342" + film.backdrop_path;
-                //byte[] imageData = ReadFile(backdrop);
-                // Image photo = new Bitmap(@"\Photos\Image20120601_1.jpeg");
+           
                 byte[] pic = ImageToByte(backdrop, System.Drawing.Imaging.ImageFormat.Jpeg);
-                //string sql = "insert into offline (title, overview, image, release_date, vote_count,id,original_language) values(@title, @overview, @pic,  @release_date, @vote_count, @id, @original_language)";
                 string sql = @"
                         insert into offline (title, overview, image, release_date, vote_count,id,original_language)
                         Select @title , @overview, @pic, @release_date,@vote_count, @id, @original_language
@@ -80,32 +104,7 @@ namespace Flixter
             }
         }
 
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
-        }
 
-        //Open file in to a filestream and read data in a byte array.
-        static byte[] ReadFile(string sPath)
-        {
-            //Initialize byte array with a null value initially.
-            byte[] data = null;
-
-            //Use FileInfo object to get file size.
-            FileInfo fInfo = new FileInfo(sPath);
-            long numBytes = fInfo.Length;
-
-            //Open FileStream to read file
-            FileStream fStream = new FileStream(sPath, FileMode.Open, FileAccess.Read);
-
-            //Use BinaryReader to read file stream into byte array.
-            BinaryReader br = new BinaryReader(fStream);
-
-            //When you use BinaryReader, you need to supply number of bytes to read from file.
-            //In this case we want to read entire file. So supplying total number of bytes.
-            data = br.ReadBytes((int)numBytes);
-            return data;
-        }
 
         public static byte[] ImageToByte(string backdrop, System.Drawing.Imaging.ImageFormat format)
         {
@@ -123,6 +122,19 @@ namespace Flixter
             }
           
         }
+
+
+
+        public static Image byteArrayToImage(byte[] bytesArr)
+        {
+            using (MemoryStream memstr = new MemoryStream(bytesArr))
+            {
+                Image img = Image.FromStream(memstr);
+                return img;
+            }
+        }
+
+
     }
 
 

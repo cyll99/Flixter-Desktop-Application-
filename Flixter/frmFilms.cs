@@ -15,7 +15,7 @@ namespace Flixter
     public partial class frmFilms : Form
     {
         int index = 0;
-        public static List<Film> listFilm = Utilities.getMovieDbList();
+        public static List<Film> listFilm; 
         public frmFilms()
         {
          
@@ -78,6 +78,35 @@ namespace Flixter
 
         public void afficher(int index)
         {
+          
+
+
+
+         
+
+
+            if (Utilities.IsConnectedToInternet())
+            {
+                listFilm = Utilities.getMovieDbList();
+                Film film = listFilm.ElementAt(index);
+                SqliteDataAccess.SaveFilm(film);
+
+                lbl_title.Text = film.title;
+                label1.Text = film.overview;
+                label1.MaximumSize = new Size(50, 0);
+                pictureBox1.LoadAsync("https://image.tmdb.org/t/p/w342" + film.backdrop_path);
+            }
+            else
+            {
+                listFilm = SqliteDataAccess.LoadFilms();
+                Film film = listFilm.ElementAt(index);
+
+                lbl_title.Text = film.title;
+                label1.Text = film.overview;
+                label1.MaximumSize = new Size(50, 0);
+                pictureBox1.Image = film.image;
+            }
+
             if (index > 0)
                 btn_precedent.Enabled = true;
             else
@@ -89,15 +118,6 @@ namespace Flixter
             else
                 btn_suivant.Enabled = true;
 
-
-          
-            Film film = listFilm.ElementAt(index);
-            SqliteDataAccess.SaveFilm(film);
-
-            lbl_title.Text = film.title;
-            label1.Text = film.overview;
-            label1.MaximumSize = new Size(50, 0);
-            pictureBox1.LoadAsync("https://image.tmdb.org/t/p/w342" + film.backdrop_path);
         }
 
         private void ClosedFomr(object sender, FormClosedEventArgs e)
