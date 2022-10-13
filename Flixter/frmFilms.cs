@@ -15,7 +15,8 @@ namespace Flixter
     public partial class frmFilms : Form
     {
         int index = 0;
-        public static List<Film> listFilm; 
+        public static List<Film> listFilm;
+        Film currentFilm;
         public frmFilms()
         {
          
@@ -89,6 +90,7 @@ namespace Flixter
             {
                 listFilm = Utilities.getMovieDbList();
                 Film film = listFilm.ElementAt(index);
+                currentFilm = film;
                 SqliteDataAccess.SaveFilm(film);
 
                 lbl_title.Text = film.title;
@@ -100,7 +102,7 @@ namespace Flixter
             {
                 listFilm = SqliteDataAccess.LoadFilms();
                 Film film = listFilm.ElementAt(index);
-
+                currentFilm = film;
                 lbl_title.Text = film.title;
                 label1.Text = film.overview;
                 label1.MaximumSize = new Size(50, 0);
@@ -123,6 +125,16 @@ namespace Flixter
         private void ClosedFomr(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btn_detail_Click(object sender, EventArgs e)
+        {
+            frmFilmDetail detail = new frmFilmDetail();
+            this.Hide();
+            detail.ShowDialog();
+            this.Show();
+
+            
         }
     }
   

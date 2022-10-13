@@ -35,6 +35,7 @@ namespace Flixter
             this.btn_precedent = new System.Windows.Forms.Button();
             this.btn_suivant = new System.Windows.Forms.Button();
             this.panelConnection = new System.Windows.Forms.Panel();
+            this.btn_detail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,12 +101,24 @@ namespace Flixter
             this.panelConnection.Size = new System.Drawing.Size(11, 13);
             this.panelConnection.TabIndex = 6;
             // 
+            // btn_detail
+            // 
+            this.btn_detail.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btn_detail.Location = new System.Drawing.Point(660, 401);
+            this.btn_detail.Name = "btn_detail";
+            this.btn_detail.Size = new System.Drawing.Size(75, 23);
+            this.btn_detail.TabIndex = 7;
+            this.btn_detail.Text = "Detail";
+            this.btn_detail.UseVisualStyleBackColor = false;
+            this.btn_detail.Click += new System.EventHandler(this.btn_detail_Click);
+            // 
             // frmFilms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(900, 461);
+            this.Controls.Add(this.btn_detail);
             this.Controls.Add(this.panelConnection);
             this.Controls.Add(this.btn_suivant);
             this.Controls.Add(this.btn_precedent);
@@ -131,5 +144,6 @@ namespace Flixter
         private System.Windows.Forms.Button btn_precedent;
         private System.Windows.Forms.Button btn_suivant;
         private System.Windows.Forms.Panel panelConnection;
+        private System.Windows.Forms.Button btn_detail;
     }
 }
