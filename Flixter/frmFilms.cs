@@ -137,12 +137,15 @@ namespace Flixter
         {
             Application.Exit();//close application
         }
+   
+    
+
         /// <summary>
         /// send user to detail page
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_detail_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             frmFilmDetail detail = new frmFilmDetail();
             detail.mainForm = this;
@@ -150,7 +153,6 @@ namespace Flixter
             detail.ShowDialog();
             this.Show();
 
-            
         }
     }
   

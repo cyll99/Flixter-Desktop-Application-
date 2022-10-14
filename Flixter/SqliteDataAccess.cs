@@ -21,7 +21,7 @@ namespace Flixter
             using (IDbConnection cnn = new SQLiteConnection("Data Source=./films.db;Version=3"))
             {
 
-                var query = "CREATE TABLE IF NOT EXISTS offline ( id INTEGER, title CHAR(50), image BLOB, release_date TEXT, original_language TEXT,  vote_count INTEGER, overview	TEXT)";
+                var query = "CREATE TABLE IF NOT EXISTS offline ( id INTEGER, title CHAR(50), image BLOB, release_date TEXT, original_language TEXT,  vote_count TEXT, vote_average TEXT, popularity TEXT, overview	TEXT)";
 
                 cnn.Execute(query, new DynamicParameters());
             }

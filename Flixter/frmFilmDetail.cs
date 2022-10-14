@@ -34,9 +34,16 @@ namespace Flixter
             this.webBrowser1.DocumentText = string.Format(html, getYoutubeKey());
 
             //set the labels
+            label1.MaximumSize = new Size(50, 0);
+
             lblDate.Text = currentFilm.release_date;
             lblLanguage.Text = currentFilm.original_language;
             lblTitle.Text = currentFilm.title;
+            label5.Text = Convert.ToString(currentFilm.vote_count);
+            label3.Text = Convert.ToString(currentFilm.vote_average);
+            label8.Text = Convert.ToString(currentFilm.popularity);
+            label1.Text = currentFilm.overview;
+            
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
