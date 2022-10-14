@@ -12,7 +12,11 @@ using System.Threading.Tasks;
 using Dapper;
 
 namespace Flixter
-{
+{/// <summary>
+/// Nom : LAROSE
+/// Prenom : Christ-Yan Love
+/// Date : 13/10/2022
+/// </summary>
     class SqliteDataAccess
     {
 

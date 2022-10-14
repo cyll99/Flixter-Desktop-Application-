@@ -100,6 +100,7 @@ namespace Flixter
             this.panelConnection.Name = "panelConnection";
             this.panelConnection.Size = new System.Drawing.Size(20, 20);
             this.panelConnection.TabIndex = 6;
+            this.panelConnection.Visible = false;
             // 
             // frmFilms
             // 
@@ -118,6 +119,7 @@ namespace Flixter
             this.Text = "Flixter";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosedFomr);
             this.Load += new System.EventHandler(this.frmFilms_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmFilms_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_title_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

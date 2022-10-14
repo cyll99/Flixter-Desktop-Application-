@@ -9,7 +9,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/// <summary>
+/// Nom : LAROSE
+/// Prenom : Christ-Yan Love
+/// Date : 13/10/2022
+/// </summary>
 namespace Flixter
 {
     public partial class frmFilms : Form
@@ -17,12 +21,13 @@ namespace Flixter
         int index = 0;
         public static List<Film> listFilm;
         public Film currentFilm;
+        public delegate void delPassFilm(Film film);
+        Graphics formGraphics;
         public frmFilms()
         {
          
             InitializeComponent();
-            panelConnection.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panelConnection.Width,
-            panelConnection.Height, 50, 50));
+            
             changeColor();
         }
 
@@ -40,23 +45,26 @@ namespace Flixter
         /// </summary>
         public void changeColor()
         {
+            Graphics formGraphics = this.CreateGraphics();
+            SolidBrush RedBrush = new SolidBrush(Color.Red);
+            SolidBrush BlueBrush = new SolidBrush(Color.Blue);
+
+            int x = 859, y = 12, cellSize = 20;
+
             if (Utilities.IsConnectedToInternet())
-                panelConnection.BackColor = Color.Blue;
+            {
+                
+                formGraphics.FillEllipse(BlueBrush, new Rectangle(x, y, cellSize, cellSize));
+            }
+
             else
-                panelConnection.BackColor = Color.Red;
+            {
+                formGraphics.FillEllipse(RedBrush, new Rectangle(x, y, cellSize, cellSize));
+
+            }
 
         }
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse
-        );
         
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -146,11 +154,35 @@ namespace Flixter
         /// <param name="e"></param>
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            frmFilmDetail detail = new frmFilmDetail();
-            detail.mainForm = this;
+            frmFilmDetail detail = new frmFilmDetail(); 
+            delPassFilm del = new delPassFilm(detail.getFilm);
+            del(this.currentFilm);
             this.Hide();
             detail.ShowDialog();
             this.Show();
+        }
+
+        private void frmFilms_Paint(object sender, PaintEventArgs e)
+        {
+            SolidBrush RedBrush = new SolidBrush(Color.Red);
+            SolidBrush BlueBrush = new SolidBrush(Color.Blue);
+
+            int x = 859, y = 12, cellSize = 20;
+            formGraphics = e.Graphics;
+            if (Utilities.IsConnectedToInternet())
+            {
+
+                //panelConnection.BackColor = Color.Blue;
+                formGraphics.FillEllipse(BlueBrush, new Rectangle(x, y, cellSize, cellSize));
+            }
+
+            else
+            {
+                formGraphics.FillEllipse(RedBrush, new Rectangle(x, y, cellSize, cellSize));
+                //panelConnection.BackColor = Color.Red;
+
+            }
+
 
         }
     }

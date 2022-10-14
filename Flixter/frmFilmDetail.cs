@@ -9,7 +9,11 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/// <summary>
+/// Nom : LAROSE
+/// Prenom : Christ-Yan Love
+/// Date : 13/10/2022
+/// </summary>
 namespace Flixter
 {
     public partial class frmFilmDetail : Form
@@ -22,11 +26,14 @@ namespace Flixter
         {
             InitializeComponent();
         }
+        //get film from main form
+        public void getFilm(Film film_from_form)
+        {
+            currentFilm = film_from_form;
+        }
 
         private void frmFilmDetail_Load(object sender, EventArgs e)
         {
-            currentFilm = ((frmFilms)mainForm).currentFilm;// get current film from frmFilm
-
             string html = "<html><head>";
             html += "<meta content='IE=Edge' http-equiv='X-UA-Compatible'/>";
             html += "<iframe id='video' src= 'https://www.youtube.com/embed/{0}' width='600' height='300' frameborder='0' allowfullscreen></iframe>";
@@ -50,7 +57,7 @@ namespace Flixter
         {
 
         }
-      
+  
         private void button1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;// close this form
