@@ -47,6 +47,9 @@ namespace Flixter
                         film.original_language = (string)sQLiteDataReader["original_language"];
                         film.vote_count = Convert.ToInt32(sQLiteDataReader["vote_count"]);
                         film.overview = (string)sQLiteDataReader["overview"];
+                        film.popularity = (float)sQLiteDataReader["popularity"];
+                        film.vote_average = (float)sQLiteDataReader["vote_average"];
+                        film.vote_count = (int)sQLiteDataReader["vote_count"];
                         byte[] image_byte = (byte[])sQLiteDataReader["image"];
 
                         Image newImage = byteArrayToImage(image_byte);
