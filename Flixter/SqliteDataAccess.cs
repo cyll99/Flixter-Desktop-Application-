@@ -21,7 +21,7 @@ namespace Flixter
             using (IDbConnection cnn = new SQLiteConnection("Data Source=./films.db;Version=3"))
             {
 
-                var query = "CREATE TABLE IF NOT EXISTS offline ( id INTEGER, title CHAR(50), image BLOB, release_date TEXT, original_language TEXT,  vote_count TEXT, vote_average TEXT, popularity TEXT, overview	TEXT)";
+                var query = "CREATE TABLE IF NOT EXISTS offline ( id INTEGER, title CHAR(50), image BLOB, release_date TEXT, original_language TEXT,  vote_count INTEGER, vote_average REAL, popularity REAL, overview	TEXT)";
 
                 cnn.Execute(query, new DynamicParameters());
             }
@@ -47,9 +47,8 @@ namespace Flixter
                         film.original_language = (string)sQLiteDataReader["original_language"];
                         film.vote_count = Convert.ToInt32(sQLiteDataReader["vote_count"]);
                         film.overview = (string)sQLiteDataReader["overview"];
-                        film.popularity = (float)sQLiteDataReader["popularity"];
-                        film.vote_average = (float)sQLiteDataReader["vote_average"];
-                        film.vote_count = (int)sQLiteDataReader["vote_count"];
+                        film.popularity = Convert.ToInt32(sQLiteDataReader["popularity"]);
+                        film.vote_average = Convert.ToInt32(sQLiteDataReader["vote_average"]);
                         byte[] image_byte = (byte[])sQLiteDataReader["image"];
 
                         Image newImage = byteArrayToImage(image_byte);
@@ -75,8 +74,8 @@ namespace Flixter
            
                 byte[] pic = ImageToByte(backdrop, System.Drawing.Imaging.ImageFormat.Jpeg);
                 string sql = @"
-                        insert into offline (title, overview, image, release_date, vote_count,id,original_language)
-                        Select @title , @overview, @pic, @release_date,@vote_count, @id, @original_language
+                        insert into offline (title, overview, image, release_date, vote_count,id,original_language,vote_average,popularity)
+                        Select @title , @overview, @pic, @release_date,@vote_count, @id, @original_language,@vote_average,@popularity
                         Where not exists (
                             select * 
                             from offline 
@@ -99,6 +98,8 @@ namespace Flixter
                     cmd.Parameters.AddWithValue("@vote_count", film.vote_count);
                     cmd.Parameters.AddWithValue("@id", film.id);
                     cmd.Parameters.AddWithValue("@original_language", film.original_language);
+                    cmd.Parameters.AddWithValue("@vote_average", film.vote_average);
+                    cmd.Parameters.AddWithValue("@popularity", film.popularity);
                     cmd.ExecuteNonQuery();
          
                 }
@@ -108,7 +109,12 @@ namespace Flixter
         }
 
 
-
+        /// <summary>
+        /// convert image from uri to byte
+        /// </summary>
+        /// <param name="backdrop"></param>
+        /// <param name="format"></param>
+        /// <returns>a list of byte</returns>
         public static byte[] ImageToByte(string backdrop, System.Drawing.Imaging.ImageFormat format)
         {
             WebClient client = new WebClient();
@@ -126,7 +132,11 @@ namespace Flixter
           
         }
 
-
+        /// <summary>
+        /// convert byte to image
+        /// </summary>
+        /// <param name="bytesArr"></param>
+        /// <returns>an image</returns>
 
         public static Image byteArrayToImage(byte[] bytesArr)
         {

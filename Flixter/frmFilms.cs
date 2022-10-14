@@ -101,7 +101,6 @@ namespace Flixter
                 listFilm = Utilities.getMovieDbList();
                 Film film = listFilm.ElementAt(index);
                 currentFilm = film;
-                Console.WriteLine(currentFilm.video.ToString());
                 SqliteDataAccess.SaveFilm(film);
 
                 lbl_title.Text = film.title;
