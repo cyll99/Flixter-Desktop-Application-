@@ -12,11 +12,7 @@ using System.Threading.Tasks;
 using Dapper;
 
 namespace Flixter
-{/// <summary>
-/// Nom : LAROSE
-/// Prenom : Christ-Yan Love
-/// Date : 13/10/2022
-/// </summary>
+{
     class SqliteDataAccess
     {
 
@@ -30,6 +26,10 @@ namespace Flixter
                 cnn.Execute(query, new DynamicParameters());
             }
         }
+        /// <summary>
+        /// Load film from local database
+        /// </summary>
+        /// <returns> List of films</returns>
         public static List<Film> LoadFilms()
         {
             List<Film> films = new List<Film>();
@@ -67,6 +67,10 @@ namespace Flixter
 
         }
         
+        /// <summary>
+        /// Insert film in local database
+        /// </summary>
+        /// <param name="film"></param>
         public static void SaveFilm(Film film)
         {
             using (SQLiteConnection cnn = new SQLiteConnection("Data Source=./films.db;Version=3"))

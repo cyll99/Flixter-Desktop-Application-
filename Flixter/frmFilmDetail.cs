@@ -9,11 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-/// <summary>
-/// Nom : LAROSE
-/// Prenom : Christ-Yan Love
-/// Date : 13/10/2022
-/// </summary>
+
 namespace Flixter
 {
     public partial class frmFilmDetail : Form
@@ -53,10 +49,7 @@ namespace Flixter
             
         }
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
+     
   
         private void button1_Click(object sender, EventArgs e)
         {

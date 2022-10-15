@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-/// <summary>
-/// Nom : LAROSE
-/// Prenom : Christ-Yan Love
-/// Date : 13/10/2022
-/// </summary>
+
 namespace Flixter
 {
 	static class Program

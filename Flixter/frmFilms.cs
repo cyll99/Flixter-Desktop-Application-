@@ -9,11 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-/// <summary>
-/// Nom : LAROSE
-/// Prenom : Christ-Yan Love
-/// Date : 13/10/2022
-/// </summary>
+
 namespace Flixter
 {
     public partial class frmFilms : Form
@@ -66,7 +62,7 @@ namespace Flixter
         }
 
         
-
+        // ddl for clicking and drangging the form
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
@@ -80,7 +76,11 @@ namespace Flixter
         }
 
        
-
+        /// <summary>
+        /// Go to the previous film and check internet connection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_precedent_Click(object sender, EventArgs e)
         {
             index -= 1;
@@ -89,6 +89,11 @@ namespace Flixter
 
         }
 
+        /// <summary>
+        /// Go to the next film and check internet connection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             index += 1;
@@ -161,7 +166,11 @@ namespace Flixter
             detail.ShowDialog();
             this.Show();
         }
-
+        /// <summary>
+        /// Paint circle on the form to indicate internet connection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmFilms_Paint(object sender, PaintEventArgs e)
         {
             SolidBrush RedBrush = new SolidBrush(Color.Red);
@@ -172,14 +181,12 @@ namespace Flixter
             if (Utilities.IsConnectedToInternet())
             {
 
-                //panelConnection.BackColor = Color.Blue;
                 formGraphics.FillEllipse(BlueBrush, new Rectangle(x, y, cellSize, cellSize));
             }
 
             else
             {
                 formGraphics.FillEllipse(RedBrush, new Rectangle(x, y, cellSize, cellSize));
-                //panelConnection.BackColor = Color.Red;
 
             }
 

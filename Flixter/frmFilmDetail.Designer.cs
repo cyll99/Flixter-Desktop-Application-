@@ -53,7 +53,6 @@ namespace Flixter
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(605, 357);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // button1
             // 
@@ -194,6 +193,7 @@ namespace Flixter
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.webBrowser1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(900, 489);
             this.Name = "frmFilmDetail";
             this.Text = "frmFilmDetail";
